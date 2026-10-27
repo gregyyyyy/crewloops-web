@@ -71,6 +71,7 @@ section { padding: 120px 0; }
 @media (max-width: 900px) { .loop svg { max-width: 270px; } }
 .spin { transform-origin: 220px 220px; animation: spin 7s linear infinite; }
 .spin-slow { transform-origin: 220px 220px; animation: spin 60s linear infinite reverse; }
+.spin-rev { transform-origin: 220px 220px; animation: spin 40s linear infinite reverse; }
 @keyframes spin { to { transform: rotate(360deg); } }
 .pulse { transform-box: fill-box; transform-origin: center; animation: pulse 3.6s ease-out infinite; }
 @keyframes pulse { 0% { opacity: .55; transform: scale(1); } 70%, 100% { opacity: 0; transform: scale(1.5); } }
@@ -94,7 +95,7 @@ section { padding: 120px 0; }
 @media (max-width: 860px) { .ways { grid-template-columns: 1fr; } }
 .way { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: 26px; padding: 30px 30px 34px; overflow: hidden; }
 .way.star { background: linear-gradient(160deg, #13285A, var(--surface) 60%); border-color: #2A4384; }
-.way svg { width: 100%; height: auto; max-height: 210px; display: block; margin: 0 auto 18px; overflow: visible; }
+.way svg { width: 100%; height: auto; max-height: 260px; display: block; margin: 0 auto 18px; overflow: visible; }
 .way h3 { font-size: 26px; margin-bottom: 10px; }
 .way p { color: var(--ink2); margin: 0; }
 .tag { position: absolute; top: 22px; right: 22px; font: 700 12px/1 var(--body); letter-spacing: .1em; text-transform: uppercase; color: var(--accent-ink); background: var(--amber); padding: 7px 10px; border-radius: 999px; }
@@ -153,5 +154,5 @@ footer a { color: var(--ink2); }
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }
   html { scroll-behavior: auto; }
-  .spin, .spin-slow, .pulse { animation: none; }
+  .spin, .spin-slow, .spin-rev, .pulse { animation: none; }
 }
