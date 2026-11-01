@@ -140,6 +140,7 @@ footer nav { display: flex; gap: 22px; margin-left: auto; }
 footer a { color: var(--ink2); }
 footer .family a { color: #fff; font-family: var(--display); font-weight: 700; }
 footer .family a b { color: #FFC857; }
+footer .family a.cd b { color: #A596FF; }
 
 /* ---------- Text pages ---------- */
 .legal { padding: 64px 0 100px; }
