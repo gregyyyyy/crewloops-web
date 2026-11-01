@@ -30,6 +30,17 @@
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
 
+    // Price in the visitor's currency (App Store prices). Unknown country: the general wording stays.
+    var p = localPrice();
+    if (p) {
+      var ps = document.querySelectorAll('.price');
+      for (var k = 0; k < ps.length; k++) {
+        ps[k].textContent = ps[k].hasAttribute('data-de')
+          ? 'für ' + p.de[0] + ' im Monat oder ' + p.de[1] + ' im Jahr'
+          : p.en[0] + ' a month or ' + p.en[1] + ' a year';
+      }
+    }
+
     // Animated illustrations stand still for people who prefer reduced motion.
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       var svgs = document.querySelectorAll('svg.anim');
@@ -43,4 +54,24 @@
     }, { rootMargin: '0px 0px -8% 0px' });
     for (var j = 0; j < els.length; j++) io.observe(els[j]);
   });
+
+  // Country from the browser language (de-CH, en-US …), otherwise from the time zone.
+  function localPrice() {
+    var EURO = ['AT','BE','CY','DE','EE','ES','FI','FR','GR','HR','IE','IT','LT','LU','LV','MT','NL','PT','SI','SK'];
+    var c = '';
+    var langs = navigator.languages || [navigator.language || ''];
+    for (var i = 0; i < langs.length && !c; i++) { var m = /-([A-Za-z]{2})$/.exec(langs[i] || ''); if (m) c = m[1].toUpperCase(); }
+    var tz = '';
+    try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) { /* old browser */ }
+    if (tz === 'Europe/Zurich') c = 'CH';                       // the time zone wins for Switzerland (de-DE browsers in Zurich)
+    else if (!c) {
+      var TZ = { 'Europe/Vienna': 'AT', 'Europe/Berlin': 'DE', 'Europe/Paris': 'FR', 'Europe/Rome': 'IT', 'Europe/Madrid': 'ES', 'Europe/Amsterdam': 'NL',
+                 'Europe/Brussels': 'BE', 'Europe/Luxembourg': 'LU', 'Europe/Lisbon': 'PT', 'Europe/Dublin': 'IE', 'Europe/Helsinki': 'FI', 'Europe/Athens': 'GR' };
+      c = TZ[tz] || (/^America\/(New_York|Chicago|Denver|Los_Angeles|Phoenix|Anchorage)$/.test(tz) ? 'US' : '');
+    }
+    if (c === 'CH') return { de: ['CHF 10', 'CHF 90'], en: ['CHF 10', 'CHF 90'] };
+    if (EURO.indexOf(c) >= 0) return { de: ['9,99 €', '89,99 €'], en: ['€9.99', '€89.99'] };
+    if (c === 'US') return { de: ['9,99 $', '89,99 $'], en: ['$9.99', '$89.99'] };
+    return null;
+  }
 })();
