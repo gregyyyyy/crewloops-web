@@ -138,6 +138,8 @@ footer { border-top: 1px solid var(--line); padding: 36px 0 48px; color: var(--m
 footer .wrap { display: flex; flex-wrap: wrap; gap: 14px 28px; align-items: center; }
 footer nav { display: flex; gap: 22px; margin-left: auto; }
 footer a { color: var(--ink2); }
+footer .family a { color: #fff; font-family: var(--display); font-weight: 700; }
+footer .family a b { color: #FFC857; }
 
 /* ---------- Text pages ---------- */
 .legal { padding: 64px 0 100px; }
