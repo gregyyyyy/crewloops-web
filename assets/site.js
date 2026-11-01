@@ -36,8 +36,8 @@
       var ps = document.querySelectorAll('.price');
       for (var k = 0; k < ps.length; k++) {
         ps[k].textContent = ps[k].hasAttribute('data-de')
-          ? 'für ' + p.de[0] + ' im Monat oder ' + p.de[1] + ' im Jahr'
-          : p.en[0] + ' a month or ' + p.en[1] + ' a year';
+          ? 'mit dem Abo für ' + p.de[0] + ' im Monat oder ' + p.de[1] + ' im Jahr'
+          : 'a subscription for ' + p.en[0] + ' a month or ' + p.en[1] + ' a year';
       }
     }
 
