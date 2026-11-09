@@ -35,9 +35,14 @@
     if (p) {
       var ps = document.querySelectorAll('.price');
       for (var k = 0; k < ps.length; k++) {
-        ps[k].textContent = ps[k].hasAttribute('data-de')
-          ? 'mit dem Abo für ' + p.de[0] + ' im Monat oder ' + p.de[1] + ' im Jahr'
-          : 'a subscription for ' + p.en[0] + ' a month or ' + p.en[1] + ' a year';
+        var de = ps[k].hasAttribute('data-de'), short = ps[k].closest('.tp');
+        if (short) {
+          ps[k].textContent = de ? p.de[0] + ' / Monat' : p.en[0] + ' / month';
+          var y = document.createElement('small'); y.textContent = de ? 'oder ' + p.de[1] + ' / Jahr' : 'or ' + p.en[1] + ' / year';
+          ps[k].appendChild(y); continue;
+        }
+        ps[k].textContent = de ? 'mit dem Abo für ' + p.de[0] + ' im Monat oder ' + p.de[1] + ' im Jahr'
+               : 'a subscription for ' + p.en[0] + ' a month or ' + p.en[1] + ' a year';
       }
     }
 

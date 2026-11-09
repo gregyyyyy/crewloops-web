@@ -174,3 +174,14 @@ footer .family a.cd b { color: #A596FF; }
   html { scroll-behavior: auto; }
   .spin, .spin-slow, .spin-rev, .pulse { animation: none; }
 }
+
+/* Pricing: three tiers side by side, stacked on phones */
+.tiers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 28px; }
+.tier { border: 1px solid var(--line); border-radius: 16px; padding: 18px 18px 16px; background: var(--bg); }
+.tier.pro { border-color: var(--accent, #5B8CFF); }
+.tier .ct { font: 700 12px/1 var(--body); letter-spacing: .14em; text-transform: uppercase; margin: 0; color: var(--muted); }
+.tier .tp small { display: block; font: 600 14px/1.4 var(--body); color: var(--ink2); margin-top: 2px; }
+.tier.pro .ct { color: var(--accent-hi); }
+.tier .tp { font-family: Sora, sans-serif; font-weight: 700; font-size: 22px; margin: 6px 0 8px; color: var(--ink, inherit); }
+.tier p:last-child { margin: 0; color: var(--ink2); font-size: 15px; }
+@media (max-width: 720px) { .tiers { grid-template-columns: 1fr; } }
