@@ -1,3 +1,3 @@
 # crewloops.com
 
-Statische Webseite von CrewLoops (Start, Support, Datenschutz, Impressum), ausgeliefert über GitHub Pages.
+Statische Webseite von CrewLoops (Start, FAQ, Datenschutz, Impressum; support.html leitet auf faq.html weiter), ausgeliefert über GitHub Pages.
