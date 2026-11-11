@@ -30,7 +30,7 @@
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
 
-    // Price in the visitor's currency (App Store prices). Unknown country: the general wording stays.
+    // Price in the visitor's currency (App Store prices); unknown country: euro.
     var p = localPrice();
     if (p) {
       var ps = document.querySelectorAll('.price');
@@ -77,6 +77,7 @@
     if (c === 'CH') return { de: ['CHF 10', 'CHF 90'], en: ['CHF 10', 'CHF 90'] };
     if (EURO.indexOf(c) >= 0) return { de: ['9,99 €', '89,99 €'], en: ['€9.99', '€89.99'] };
     if (c === 'US') return { de: ['9,99 $', '89,99 $'], en: ['$9.99', '$89.99'] };
-    return null;
+    // anywhere else (e.g. on a layover in Asia, or a browser set to English UK): show the euro price, so a price is always there
+    return { de: ['9,99 €', '89,99 €'], en: ['€9.99', '€89.99'] };
   }
 })();
