@@ -7,69 +7,63 @@
 <meta name="theme-color" content="#08142B">
 <title>CrewLoops – 3 months free</title>
 <meta property="og:title" content="CrewLoops – 3 months free">
-<meta property="og:description" content="Swap duties the smart way. All features free for 3 months.">
 <meta property="og:image" content="https://crewloops.com/assets/og.png">
-<link rel="icon" href="/favicon.ico">
 <!-- Business-card QR code (crewloops.com/card). Not linked anywhere on the website.
-     CrewLoops is free for the first 3 months for everyone, so there is no code to redeem: this page only shows
-     the gift (like the App Store offer sheet the CrewJournal and CrewDreams cards open) and then leads to the store. -->
+     Same page for all three crew apps (CrewLoops, CrewJournal, CrewDreams): first this "3 months free" screen, then the store.
+     OFFER: App Store offer code link (CREWCARD); empty = no code, the button opens the App Store page.
+     To change or end the offer, only change OFFER here; the printed cards keep working. -->
 <style>
-@font-face{font-family:Sora;font-weight:400;src:url(/assets/sora-latin-400-normal.woff2) format('woff2')}
-@font-face{font-family:Sora;font-weight:600;src:url(/assets/sora-latin-600-normal.woff2) format('woff2')}
-@font-face{font-family:Sora;font-weight:700;src:url(/assets/sora-latin-700-normal.woff2) format('woff2')}
-:root{--bg:#08142B;--card:#0F1F3D;--ink:#EEF2FB;--muted:#B8C4E0;--accent:#5B8CFF;--line:#1E3A7A}
+@font-face{font-family:Disp;font-weight:600;src:url(/assets/sora-latin-600-normal.woff2) format('woff2')}@font-face{font-family:Disp;font-weight:700;src:url(/assets/sora-latin-700-normal.woff2) format('woff2')}
+:root{--bg:#08142B;--ink:#EEF2FB;--muted:#B8C4E0;--accent:#5B8CFF}
 *{box-sizing:border-box}
-html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Sora,-apple-system,system-ui,sans-serif}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif}
 main{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 20px calc(32px + env(safe-area-inset-bottom));text-align:center;
-  background:radial-gradient(60% 45% at 50% 30%, rgba(30,58,122,.75), rgba(8,20,43,0))}
+  background:radial-gradient(60% 45% at 50% 30%, rgba(30,58,122,.75), transparent)}
 .icon{width:112px;height:112px;border-radius:25px;box-shadow:0 12px 40px rgba(0,0,0,.45)}
-.gift{margin:28px 0 6px;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
-h1{margin:0;font-size:40px;line-height:1.08;font-weight:700;letter-spacing:-.8px}
+.eyebrow{margin:28px 0 6px;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+h1{margin:0;font-family:Disp,system-ui,sans-serif;font-size:40px;line-height:1.05;font-weight:700;letter-spacing:-.8px;}
 .lead{margin:14px auto 0;max-width:340px;font-size:17px;line-height:1.45;color:var(--muted)}
 ul{list-style:none;padding:0;margin:26px auto 0;max-width:340px;text-align:left;display:grid;gap:12px}
 li{display:flex;gap:12px;align-items:flex-start;font-size:15.5px;line-height:1.4}
-li b{flex:none;width:22px;height:22px;border-radius:50%;background:var(--accent);color:#08142B;font-size:13px;display:grid;place-items:center;margin-top:1px}
+li b{flex:none;width:22px;height:22px;border-radius:50%;background:var(--accent);color:var(--bg);font-size:13px;display:grid;place-items:center;margin-top:1px}
 .btn{display:block;width:100%;max-width:340px;margin:32px auto 0;padding:17px 20px;border-radius:16px;background:var(--accent);color:#06102A;font-size:17px;font-weight:700;text-decoration:none}
-.small{margin-top:16px;font-size:13px;color:var(--muted)}
-.small a{color:var(--muted)}
+.small{margin:16px auto 0;max-width:340px;font-size:12.5px;line-height:1.45;color:var(--muted)}
 </style>
 </head>
 <body>
 <main>
   <img class="icon" src="/assets/icon-512.png" alt="CrewLoops">
-  <p class="gift" data-t="gift">Welcome to CrewLoops</p>
-  <h1 data-t="title">3 months free</h1>
-  <p class="lead" data-t="lead">CrewLoops Pro is yours for 3 months, with all features. No payment details needed.</p>
-  <ul>
-    <li><b>✓</b><span data-t="b1">Direct swaps and Loops of three</span></li>
-    <li><b>✓</b><span data-t="b2">Checked against your airline's rules</span></li>
-    <li><b>✓</b><span data-t="b3">Starts automatically when you open the app</span></li>
-  </ul>
-  <a class="btn" id="go" href="https://crewloops.com/" data-t="cta">Get CrewLoops</a>
-  <p class="small" id="note" data-t="note">Nothing to redeem: just download the app.</p>
+  <p class="eyebrow" id="eyebrow">Welcome to CrewLoops</p>
+  <h1 id="title">3 months free</h1>
+  <p class="lead" id="lead"></p>
+  <ul id="list"></ul>
+  <a class="btn" id="go" href="https://crewloops.com/"></a>
+  <p class="small" id="note"></p>
 </main>
 <script>
 (function () {
-  var APP_STORE = 'https://apps.apple.com/app/id6827033497';
-  var PLAY_STORE = '';    // once live: 'https://play.google.com/store/apps/details?id=com.crewloops.app'
+  var OFFER = "";
+  var APP_STORE = "https://apps.apple.com/app/id6827033497";
+  var PLAY_STORE = "";    // once live on Google Play
   var SITE = 'https://crewloops.com/';
+  var TEXT = {"en": {"lead": "CrewLoops Pro is yours for 3 months, with all features. No payment details needed.", "b": ["Direct swaps and Loops of three", "Checked against your airline's rules", "Starts automatically when you open the app"], "cta": "Get CrewLoops", "note": "Nothing to redeem: just download the app."}, "de": {"lead": "CrewLoops Pro gehört 3 Monate dir, mit allen Funktionen. Ohne Zahlungsdaten.", "b": ["Direkte Tausche und Loops zu dritt", "Geprüft nach den Regeln deiner Airline", "Startet automatisch, wenn du die App öffnest"], "cta": "CrewLoops holen", "note": "Nichts einzulösen: einfach die App laden."}};
   var ua = navigator.userAgent || '';
   var ios = /iPhone|iPad|iPod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
   var android = /Android/i.test(ua);
   var de = /^de\b/i.test(navigator.language || '');
-  var T = {
-    gift: 'Willkommen bei CrewLoops', title: '3 Monate gratis',
-    lead: 'CrewLoops Pro gehört 3 Monate dir, mit allen Funktionen. Ohne Zahlungsdaten.',
-    b1: 'Direkte Tausche und Loops zu dritt', b2: 'Geprüft nach den Regeln deiner Airline',
-    b3: 'Startet automatisch, wenn du die App öffnest', cta: 'CrewLoops holen', note: 'Nichts einzulösen: einfach die App laden.'
-  };
+  var t = TEXT[de ? 'de' : 'en'];
   if (de) { document.documentElement.lang = 'de'; document.title = 'CrewLoops – 3 Monate gratis';
-    [].forEach.call(document.querySelectorAll('[data-t]'), function (el) { var k = el.getAttribute('data-t'); if (T[k]) el.textContent = T[k]; }); }
-  var go = document.getElementById('go');
-  go.href = (ios && APP_STORE) || (android && PLAY_STORE) || (!ios && !android && APP_STORE) || SITE;
-  if (android && !PLAY_STORE) {
-    go.textContent = de ? 'Zur Website' : 'Visit the website';
-    document.getElementById('note').textContent = de ? 'CrewLoops kommt bald auf Google Play.' : 'CrewLoops is coming to Google Play soon.';
+    document.getElementById('eyebrow').textContent = 'Willkommen bei CrewLoops'; document.getElementById('title').textContent = '3 Monate gratis'; }
+  document.getElementById('lead').textContent = t.lead;
+  document.getElementById('list').innerHTML = t.b.map(function (x) { return '<li><b>✓</b><span></span></li>'; }).join('');
+  [].forEach.call(document.querySelectorAll('#list span'), function (s, i) { s.textContent = t.b[i]; });
+  var go = document.getElementById('go'), note = document.getElementById('note');
+  go.textContent = t.cta; note.textContent = t.note;
+  if (android) {
+    go.href = PLAY_STORE || SITE;
+    if (!PLAY_STORE) { go.textContent = de ? 'Zur Website' : 'Visit the website'; note.textContent = de ? 'CrewLoops kommt bald auf Google Play.' : 'CrewLoops is coming to Google Play soon.'; }
+  } else {
+    go.href = OFFER || APP_STORE;
   }
 })();
 </script>
