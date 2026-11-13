@@ -213,5 +213,5 @@ __d(function(g,r,i,a,m,e,d){"use strict";Object.defineProperty(e,'__esModule',{v
 __d(function(g,r,i,a,m,e,d){"use strict";Object.defineProperty(e,'__esModule',{value:!0}),Object.defineProperty(e,"Color",{enumerable:!0,get:function(){return t}});const t={Dark:'dark',Light:'light'}},977,[]);
 __d(function(g,r,i,a,m,e,d){},978,[]);
 __d(function(g,r,i,a,m,e,d){"use strict";Object.defineProperty(e,'__esModule',{value:!0}),Object.defineProperty(e,"isErrorWithCode",{enumerable:!0,get:function(){return n}}),e.isCancelledResponse=function(n){return'cancelled'===n.type},e.isNoSavedCredentialFoundResponse=function(n){return'noSavedCredentialFound'===n.type},e.isSuccessResponse=function(n){return'success'===n.type};const n=n=>(n instanceof Error||'object'==typeof n&&null!=n)&&'code'in n},979,[]);
-__d(function(g,r,i,a,m,e,d){"use strict";m.exports={uri:"/app-preview/assets/assets/google-g.f09174b30e293dd9ae6f433c6f879fde.png",width:96,height:96,toString(){return this.uri}}},980,[]);
+__d(function(g,r,i,a,m,e,d){"use strict";m.exports={uri:"/app-preview/assets/assets/google-g.dd642b58bea49af3f9486cfa41e1b1d0.png",width:96,height:96,toString(){return this.uri}}},980,[]);
 __d(function(g,r,i,a,m,e,d){"use strict";m.exports={uri:"/app-preview/assets/assets/apple-logo.038ff0b610f56ee65f5d2928929e15cc.png",width:96,height:96,toString(){return this.uri}}},981,[]);
